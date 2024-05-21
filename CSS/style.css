@@ -1,0 +1,155 @@
+/* Estilos CSS */
+.contact-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.contact-container h2 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.person {
+    margin-bottom: 20px;
+}
+
+.person h3 {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.person p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.person strong {
+    color: #000;
+}
+
+.person a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.person a:hover {
+    text-decoration: underline;
+}
+.red-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Tamanho padronizado maior */
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    width: 200px; /* Largura padronizada */
+    text-align: center;
+}
+
+.red-button:hover {
+    background-color: darkred;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background-color: #f30a0a;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+}
+nav a {
+    color: #fff;
+    padding: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+nav a:hover {
+    background-color: #555;
+}
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.product {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+.product img {
+    max-width: 150px;
+}
+.cart, .contact, .payment-form {
+    padding: 1rem;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.cart-item div {
+    flex: 1;
+    text-align: center;
+}
+.contact form, .payment-form form {
+    display: flex;
+    flex-direction: column;
+}
+.contact form input, .contact form textarea, .payment-form form input, .payment-form form select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+.hidden {
+    display: none;
+}
+.cart-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+.cart-icon img {
+    width: 30px;
+    height: 30px;
+}
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0 5px;
+}
