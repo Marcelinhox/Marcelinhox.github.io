@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiamento de Motos</title>
+    <style>
+        /* Estilos CSS */
+        .contact-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        .contact-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .person {
+            margin-bottom: 20px;
+        }
+
+        .person h3 {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .person p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .person strong {
+            color: #000;
+        }
+
+        .person a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .person a:hover {
+            text-decoration: underline;
+        }
+        .red-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 15px 30px; /* Tamanho padronizado maior */
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            width: 200px; /* Largura padronizada */
+            text-align: center;
+        }
+
+        .red-button:hover {
+            background-color: darkred;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #f30a0a;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #000000;
+        }
+        nav a {
+            color: #fff;
+            padding: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #ccc;
+        }
+        .product img {
+            max-width: 150px;
+        }
+        .cart, .contact, .payment-form {
+            padding: 1rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .cart-item div {
+            flex: 1;
+            text-align: center;
+        }
+        .contact form, .payment-form form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact form input, .contact form textarea, .payment-form form input, .payment-form form select {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+        .hidden {
+            display: none;
+        }
+        .cart-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+        }
+        .cart-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+     <!-- Estrutura HTML -->
+     <header>
+        <h1>Financiamento de Motos</h1>
+        <!-- Ícone do carrinho -->
+        <div id="cart-icon" class="cart-icon" onclick="showSection('carrinho')">
+            <img src="imagens/carrinhocompras.png" alt="Carrinho">
+            <div id="cart-count" class="cart-count hidden">0</div>
+        </div>
+    </header>
+    <!-- Navegação -->
+    <nav>
+        <!-- Links de navegação -->
+        <a onclick="showSection('principal')">Página Principal</a>
+        <a onclick="showSection('produtos')">Produtos</a>
+        <a onclick="showSection('contato')">Contato</a>
+    </nav>
+    <!-- Conteúdo Principal -->
+    <div id="principal" class="container">
+        <h2>Quem Somos</h2>
+        <p>Somos uma empresa dedicada a fornecer as melhores opções de financiamento de motos do mercado. Nossa missão é ajudar você a conquistar a moto dos seus sonhos com as melhores condições de pagamento.</p>
+        <h2>Serviços Prestados</h2>
+        <ul>
+            <li>Financiamento de motos novas e usadas</li>
+            <li>Consultoria financeira personalizada</li>
+            <li>Planos de pagamento flexíveis</li>
+            <li>Atendimento especializado</li>
+        </ul>
+    </div>
+    <!-- Produtos -->
+    <div id="produtos" class="container hidden">
+        <h2>Produtos</h2>
+        <div class="product">
+            <div>
+                <h3>CG 160 Fan</h3>
+                <p>Honda CG 160 Fan tem o motor que é equipado com injeção eletrônica, atinge uma potência de 14,9 cv a 8 mil giros, quando está abastecido com gasolina, podendo chegar aos 15,1 cv com etanol. O torque máximo é de 1,61</p>
+                <p>R$ 12.687,00</p>
+            </div>
+            <img src="imagens/cg160.jpg" alt="CG 160 Fan">
+            <button class="red-button" onclick="addToCart('CG 160 Fan', 12687)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <div>
+                <h3>CB 250F</h3>
+                <p>A Honda CB 250F Twister ABS, com seu motor flex de 249,5 cc e potência de 22,4 cv, oferece um equilíbrio perfeito entre desempenho e economia. Seu design esportivo e cores vibrantes a aproximam da Honda CB 500F, visando competir com a Yamaha YS 250 Fazer.</p>
+                <p>R$ 19.777,00</p>
+            </div>
+            <img src="imagens/cb250.jpg" alt="CB 250F">
+            <button class="red-button" onclick="addToCart('CB 250F', 19777)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <div>
+                <h3>CB 500F</h3>
+                <p>Motor Com desempenho esportivo e empolgante, a CB500F tem o motor de dois cilindros com 471 cm³ tem excelente entrega de potência em todas as faixas e rotações. Sua potência máxima de 50,2 cv a 8.500 rpm e torque de 4,54 kgf.m a 7.000 rpm garantem alta performance ao pilotar, além de um belo som.</p>
+                <p>R$ 39.500,00</p>
+            </div>
+            <img src="imagens/cb500f.jpg" alt="CB 500F">
+            <button class="red-button" onclick="addToCart('CB 500F', 39500)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <div>
+                <h3>Africa Twin</h3>
+                <p>O motor bicilíndrico da CRF 1100L Africa Twin possui 1.084 cm³, entregando 99,3 cv de potência e torque de 10,5 kgf.m que, em conjunto com a sua estrutura leve e esguia, proporciona uma pilotagem ágil e um ótimo controle da aceleração; e junto da potência fazem um conjunto excelente tanto para os trajetos em estradas sinuosas quanto para o off-road.</p>
+                <p>R$ 81.100,00</p>
+            </div>
+            <img src="imagens/africatwin.jpg" alt="Africa Twin">
+            <button class="red-button" onclick="addToCart('Africa Twin', 81100)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+    <!-- Carrinho -->
+    <div id="carrinho" class="container hidden">
+        <h2>Carrinho</h2>
+        <div id="cart-items">
+            <!-- Itens do carrinho serão adicionados aqui -->
+        </div>
+        <div id="cart-total" class="cart-total">
+            <h3>Total: R$ 0,00</h3>
+        </div>
+        <div class="payment-options">
+            <h3>Opções de Pagamento</h3>
+            <div>
+                <label>
+                    <input type="radio" name="payment" value="pix" onchange="updatePayment()"> Pix (10% de desconto)
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="payment" value="boleto" onchange="updatePayment()"> Boleto (valor normal)
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="payment" value="cartao1x" onchange="updatePayment()"> Cartão de Crédito (1x valor normal)
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="payment" value="cartao2x12x" onchange="updatePayment()"> Cartão de Crédito (2x até 12x com acréscimo de 0.76% por parcela)
+                </label>
+                <input type="number" id="installments" min="2" max="12" value="2" onchange="updatePayment()">
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="payment" value="financiamento" onchange="updatePayment()"> Financiamento (até 64x com 0.99% por parcela)
+                </label>
+                <input type="number" id="financingInstallments" min="1" max="64" value="1" onchange="updatePayment()">
+            </div>
+            <div id="final-total">
+                <h3>Valor Final: R$ 0,00</h3>
+            </div>
+            <button onclick="finalizePurchase()">Finalizar Pagamento</button>
+            <div id="finalization-form" class="payment-form hidden">
+                <h3>Dados Pessoais</h3>
+                <form id="personal-data-form">
+                    <input type="text" id="nome" name="nome" placeholder="Seu Nome" required>
+                    <input type="text" name="cpf" placeholder="Seu CPF" required>
+                    <input type="text" name="telefone" placeholder="Seu Telefone">
+                    <input type="email" name="email" placeholder="Seu Email">
+                    <input type="text" name="endereco" placeholder="Seu Endereço">
+                    <div id="payment-specific-fields">
+                        <!-- Campos específicos do método de pagamento serão adicionados aqui -->
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        
+    </div>
+    <!-- Contato -->
+    <div class="contact-container hidden">
+        <h2>Contato</h2>
+        <div class="person">
+            <h3>Marcelo Marques</h3>
+            <p>Estudante de Análise e Desenvolvimento de Sistemas (ADS) na Faculdade Municipal de Palhoça.</p>
+            <p><strong>Email:</strong> <a href="mailto:marcelo.marques@example.com">marcelo.marques@example.com</a></p>
+            <p><strong>Telefone:</strong> (48) 1234-5678</p>
+        </div>
+        <div class="person">
+            <h3>Willian Belmonte</h3>
+            <p>Estudante de Análise e Desenvolvimento de Sistemas (ADS) na Faculdade Municipal de Palhoça.</p>
+            <p><strong>Email:</strong> <a href="mailto:willian.belmonte@example.com">willian.belmonte@example.com</a></p>
+            <p><strong>Telefone:</strong> (48) 8765-4321</p>
+        </div>
+    </div>
+     <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Financiamento de Motos. Todos os direitos reservados.</p>
+    </footer>
+    
+
+<script>
+    let cart = [];
+
+    function showSection(sectionId) {
+    const sections = document.querySelectorAll('.container');
+    sections.forEach(section => {
+        if (section.id === sectionId) {
+            section.classList.remove('hidden');
+        } else {
+            section.classList.add('hidden');
+        }
+    });
+
+    // Adicione este bloco para garantir que a seção de contato seja exibida quando o link "Contato" for clicado
+    const contactSection = document.querySelector('.contact-container');
+    if (sectionId === 'contato') {
+        contactSection.classList.remove('hidden');
+    } else {
+        contactSection.classList.add('hidden');
+    }
+
+    document.getElementById('cart-icon').classList.toggle('hidden', sectionId === 'carrinho');
+    updateCartCount();
+}
+
+    function addToCart(productName, productPrice) {
+        const existingProduct = cart.find(item => item.name === productName);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push({ name: productName, price: productPrice, quantity: 1 });
+        }
+        updateCart();
+    }
+
+    function removeFromCart(productName) {
+        const existingProduct = cart.find(item => item.name === productName);
+        if (existingProduct) {
+            if (existingProduct.quantity > 1) {
+                existingProduct.quantity -= 1;
+            } else {
+                cart = cart.filter(item => item.name !== productName);
+            }
+        }
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <div>${item.name}</div>
+                <div>${item.quantity}</div>
+                <div>R$ ${(item.price * item.quantity).toFixed(2)}</div>
+                <button onclick="removeFromCart('${item.name}')">Remover</button>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+            total += item.price * item.quantity;
+        });
+        document.getElementById('cart-total').innerHTML = `<h3>Total: R$ ${total.toFixed(2)}</h3>`;
+        updateCartCount();
+        updatePayment();
+    }
+
+    function updateCartCount() {
+        const cartCount = document.getElementById('cart-count');
+        const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = itemCount;
+        cartCount.classList.toggle('hidden', itemCount === 0);
+    }
+
+    function updatePayment() {
+        const paymentOption = document.querySelector('input[name="payment"]:checked');
+        let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        let finalTotal = total;
+
+        if (paymentOption) {
+            switch (paymentOption.value) {
+                case 'pix':
+                    finalTotal = total * 0.9;
+                    break;
+                case 'boleto':
+                    finalTotal = total;
+                    break;
+                case 'cartao1x':
+                    finalTotal = total;
+                    break;
+                case 'cartao2x12x':
+                    const installments = parseInt(document.getElementById('installments').value, 10);
+                    finalTotal = total * Math.pow(1.0076, installments);
+                    break;
+                case 'financiamento':
+                    const financingInstallments = parseInt(document.getElementById('financingInstallments').value, 10);
+                    finalTotal = total * Math.pow(1.0099, financingInstallments);
+                    break;
+            }
+        }
+        document.getElementById('final-total').innerHTML = `<h3>Valor Final: R$ ${finalTotal.toFixed(2)}</h3>`;
+    }
+
+    function finalizePurchase() {
+        const finalizationForm = document.getElementById('finalization-form');
+        const paymentSpecificFields = document.getElementById('payment-specific-fields');
+        const paymentOption = document.querySelector('input[name="payment"]:checked');
+
+        paymentSpecificFields.innerHTML = '';
+
+        if (paymentOption) {
+            finalizationForm.classList.remove('hidden');
+            switch (paymentOption.value) {
+                case 'pix':
+                    paymentSpecificFields.innerHTML = `
+                        <h4>Chave PIX</h4>
+                        <p>(48)991614226</p>
+                        <input type="file" name="comprovante" accept="image/*" required>
+                    `;
+                    break;
+                case 'boleto':
+                    paymentSpecificFields.innerHTML = `
+                        <h4>Código do Boleto</h4>
+                        <p>${generateRandomBoleto()}</p>
+                    `;
+                    break;
+                case 'cartao1x':
+                case 'cartao2x12x':
+                    paymentSpecificFields.innerHTML = `
+                        <h4>Dados do Cartão de Crédito</h4>
+                        <input type="text" name="cartao-numero" placeholder="Número do Cartão" required>
+                        <input type="text" name="cartao-nome" placeholder="Nome no Cartão" required>
+                        <input type="text" name="cartao-validade" placeholder="Validade (MM/AA)" required>
+                        <input type="text" name="cartao-cvv" placeholder="CVV" required>
+                    `;
+                    break;
+                case 'financiamento':
+                    paymentSpecificFields.innerHTML = `
+                        <h4>Dados serão analisados</h4>
+                        <p>Seus dados serão analisados e entraremos em contato.</p>
+                    `;
+                    break;
+            }
+        }
+    }
+
+    function generateRandomBoleto() {
+        let boleto = '';
+        for (let i = 0; i < 47; i++) {
+            boleto += Math.floor(Math.random() * 10);
+        }
+        return boleto;
+    }
+
+    // Função para validar nome e sobrenome
+    function validateName() {
+        const nameInput = document.getElementById('nome');
+        const name = nameInput.value.trim();
+
+        if (!name.includes(' ')) {
+            alert('Por favor, insira seu nome completo (nome e sobrenome).');
+            nameInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    // Evento de envio do formulário de dados pessoais
+    document.getElementById('personal-data-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Validar nome e sobrenome
+        if (!validateName()) {
+            return;
+        }
+
+        // Aqui você pode adicionar a lógica para enviar os dados do formulário para o servidor.
+        alert('Dados enviados com sucesso!');
+    });
+</script>
+
+</body>
+</html>
